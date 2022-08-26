@@ -1,10 +1,11 @@
 import React from 'react';
+import Wrapper from '../components/utils/Wrapper';
 import {View, Text, Button} from 'react-native';
 
 const HomeScreen = ({navigation}) => {
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home Screen</Text>
+    <Wrapper>
+      <Text className="dark:text-white">Home Screen</Text>
       <Button
         title="Go To Details"
         onPress={() =>
@@ -14,7 +15,7 @@ const HomeScreen = ({navigation}) => {
           })
         }
       />
-    </View>
+    </Wrapper>
   );
 };
 
