@@ -1,20 +1,15 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Wrapper from '../components/utils/Wrapper';
 import {View, Text, Button} from 'react-native';
+import MangaList from '../components/manga/MangaList';
 
 const HomeScreen = ({navigation}) => {
   return (
-    <Wrapper>
-      <Text className="dark:text-white">Home Screen</Text>
-      <Button
-        title="Go To Details"
-        onPress={() =>
-          navigation.navigate('Details', {
-            itemId: 86,
-            otherParam: 'anything you want here',
-          })
-        }
-      />
+    <Wrapper otherClass={'items-center'}>
+      <Text className="text-xl pb-10 font-bold dark:text-white">
+        Manga List
+      </Text>
+      <MangaList />
     </Wrapper>
   );
 };
