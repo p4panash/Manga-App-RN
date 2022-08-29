@@ -1,8 +1,10 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 
-const MangaCard = ({id, attributes, cover}) => {
+const MangaCard = ({id, attributes, cover, author, year}) => {
   const [loadingCycle, setLoadingCycle] = useState(0);
+  const navigation = useNavigation();
 
   const styles = StyleSheet.create({
     cover: {
@@ -15,7 +17,17 @@ const MangaCard = ({id, attributes, cover}) => {
 
   return (
     <View className="flex-1 basis-1/2 min-h-fit">
-      <View className="flex-1 m-1 rounded-lg dark:bg-slate-800">
+      <TouchableOpacity
+        className="flex-1 m-1 rounded-lg dark:bg-slate-800"
+        onPress={() =>
+          navigation.navigate('Details', {
+            id: id,
+            title: attributes.title.en,
+            cover: cover,
+            attributes: attributes,
+            author: author,
+          })
+        }>
         <View className="flex-1 p-2 items-center">
           <Image
             style={styles.cover}
@@ -32,7 +44,7 @@ const MangaCard = ({id, attributes, cover}) => {
             </Text>
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };

@@ -12,10 +12,7 @@ const MangaList = () => {
     });
   }, []);
 
-  const renderItem = ({item}) => (
-    <MangaCard id={item.id} attributes={item.attributes} cover={item.cover} />
-  );
-
+  const renderItem = ({item}) => <MangaCard {...item} />;
   const fetchNew = () => {
     const offset = list.length;
     getMangaList(offset).then(result => setList([...list, ...result]));

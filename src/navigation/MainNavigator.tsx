@@ -17,8 +17,19 @@ const MainNavigator = (): React.ReactElement => {
   return (
     <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{title: 'Manga List'}}
+        />
+        <Stack.Screen
+          name="Details"
+          component={DetailsScreen}
+          options={({route}) => ({
+            title: route.params.title,
+            headerBackTitle: 'Back',
+          })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

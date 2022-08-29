@@ -1,25 +1,20 @@
 import React from 'react';
-import {Text, Button} from 'react-native';
+import DetailsHeader from '../components/DetailsScreen/DetailsHeader';
 import Wrapper from '../components/utils/Wrapper';
 
 const DetailsScreen = ({route, navigation}) => {
-  const {itemId, otherParam} = route.params;
+  const {id, title, cover, attributes, author} = route.params;
+
+  const detailsProps = {
+    title: title,
+    cover: cover,
+    attributes: attributes,
+    author: author,
+  };
 
   return (
     <Wrapper>
-      <Text>Details Screen</Text>
-      <Text>itemId: {JSON.stringify(itemId)}</Text>
-      <Text>otherParam: {JSON.stringify(otherParam)}</Text>
-      <Button
-        title="Go to Details... again"
-        onPress={() =>
-          navigation.push('Details', {
-            itemId: Math.floor(Math.random() * 100),
-          })
-        }
-      />
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-      <Button title="Go back" onPress={() => navigation.goBack()} />
+      <DetailsHeader {...detailsProps} />
     </Wrapper>
   );
 };
