@@ -1,5 +1,14 @@
 import request from '../utils/request';
 
+const parseMangaData = (mangaData: any) => {
+  const fileName = mangaData.relationships.find(
+    (data: any) => data.type === 'cover_art',
+  ).attributes.fileName;
+  const coverURI = `https://uploads.mangadex.org/covers/${mangaData.id}/${fileName}`;
+
+  return {id: mangaData.id, attributes: mangaData.attributes, cover: coverURI};
+};
+
 export const getMangaList = async (offset: Number = 0) => {
   return request({
     url: 'manga',
@@ -7,33 +16,13 @@ export const getMangaList = async (offset: Number = 0) => {
       'contentRating[]': 'safe',
       offset: offset,
       'order[latestUploadedChapter]': 'desc',
-    },
-  });
-};
-
-export const getMangaCoverID = async (mangaID: Number) => {
-  return request({
-    url: 'cover',
-    params: {
-      'manga[]': mangaID,
+      'includes[]': 'cover_art',
     },
   }).then(result => {
-    const id = result.data[0]?.id;
-    return id;
+    const newResult = result.data.map((value: any) => {
+      return parseMangaData(value);
+    });
+
+    return newResult;
   });
-};
-
-export const getMangaFileNameCover = async (coverId: Number) => {
-  return request({
-    url: `cover/${coverId}`,
-  }).then(result => {
-    return result.data.attributes.fileName;
-  });
-};
-
-export const getMangaCover = async (mangaID: Number) => {
-  const coverID = await getMangaCoverID(mangaID);
-  const filename = await getMangaFileNameCover(coverID);
-
-  return `https://uploads.mangadex.org/covers/${mangaID}/${filename}`;
 };

@@ -8,17 +8,17 @@ const MangaList = () => {
 
   useEffect(() => {
     getMangaList().then(result => {
-      setList(result.data);
+      setList(result);
     });
   }, []);
 
   const renderItem = ({item}) => (
-    <MangaCard id={item.id} attributes={item.attributes} />
+    <MangaCard id={item.id} attributes={item.attributes} cover={item.cover} />
   );
 
   const fetchNew = () => {
     const offset = list.length;
-    getMangaList(offset).then(result => setList([...list, ...result.data]));
+    getMangaList(offset).then(result => setList([...list, ...result]));
   };
 
   return (
