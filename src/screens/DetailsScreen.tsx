@@ -1,4 +1,6 @@
 import React from 'react';
+import {ScrollView} from 'react-native';
+import DescriptionCard from '../components/DetailsScreen/DescriptionCard';
 import DetailsHeader from '../components/DetailsScreen/DetailsHeader';
 import Wrapper from '../components/utils/Wrapper';
 
@@ -12,9 +14,14 @@ const DetailsScreen = ({route, navigation}) => {
     author: author,
   };
 
+  const description = attributes.description.en;
+
   return (
     <Wrapper>
-      <DetailsHeader {...detailsProps} />
+      <ScrollView>
+        <DetailsHeader {...detailsProps} />
+        {description ? <DescriptionCard description={description} /> : null}
+      </ScrollView>
     </Wrapper>
   );
 };
