@@ -19,23 +19,33 @@ const DetailsHeader = ({title, cover, attributes, author}) => {
           <Image style={styles.cover} source={{uri: cover}} />
         </View>
         <View className="pl-4 flex-1">
-          <Text className="font-bold text-xl dark:text-white mb-4 flex-wrap">
+          <Text className="font-bold text-xl text-black dark:text-white mb-4 flex-wrap">
             {title}
           </Text>
           <View className="mb-2">
-            <Text className="font-bold text-lg text-zinc-400">Status</Text>
-            <Text className="font-bold text-white">{attributes.status}</Text>
+            <Text className="font-bold text-lg text-zinc-600 dark:text-zinc-400">
+              Status
+            </Text>
+            <Text className="font-bold text-black dark:text-white">
+              {attributes.status}
+            </Text>
           </View>
           <View className="mb-2">
-            <Text className="font-bold text-lg text-zinc-400">Author</Text>
-            <Text className="font-bold text-white">{author}</Text>
+            <Text className="font-bold text-lg text-zinc-600 dark:text-zinc-400">
+              Author
+            </Text>
+            <Text className="font-bold text-black dark:text-white">
+              {author}
+            </Text>
           </View>
           {attributes.year && (
             <View>
-              <Text className="font-bold text-lg text-zinc-400">
+              <Text className="font-bold text-lg text-zinc-600 dark:text-zinc-400">
                 Release Date
               </Text>
-              <Text className="font-bold text-white">{attributes.year}</Text>
+              <Text className="font-bold text-black dark:text-white">
+                {attributes.year}
+              </Text>
             </View>
           )}
         </View>
