@@ -21,6 +21,15 @@ const parseMangaData = (mangaData: any) => {
   };
 };
 
+const parseChapterData = (chapterData: any) => {
+  return {
+    id: chapterData.id,
+    chapter: chapterData.attributes.chapter,
+    title: chapterData.attributes.title,
+    release: chapterData.attributes.publishAt,
+  };
+};
+
 export const getMangaList = async (offset: Number = 0) => {
   return request({
     url: 'manga',
@@ -29,6 +38,7 @@ export const getMangaList = async (offset: Number = 0) => {
       offset: offset,
       'order[latestUploadedChapter]': 'desc',
       includes: ['cover_art', 'author'],
+      'availableTranslatedLanguage[]': 'en',
     },
     paramsSerialzer: params => {
       return qs.stringify(params);
@@ -36,6 +46,28 @@ export const getMangaList = async (offset: Number = 0) => {
   }).then(result => {
     const newResult = result.data.map((value: any) => {
       return parseMangaData(value);
+    });
+
+    return newResult;
+  });
+};
+
+export const getChapterList = async (
+  mangaID: any,
+  offset: Number = 0,
+  limit: Number = 100,
+) => {
+  return request({
+    url: `manga/${mangaID}/feed`,
+    params: {
+      limit: limit,
+      offset: offset,
+      'translatedLanguage[]': 'en',
+      'order[chapter]': 'desc',
+    },
+  }).then(result => {
+    const newResult = result.data.map((value: any) => {
+      return parseChapterData(value);
     });
 
     return newResult;
