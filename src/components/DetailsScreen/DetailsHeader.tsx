@@ -26,16 +26,16 @@ const DetailsHeader = ({title, cover, attributes, author}) => {
             <Text className="font-bold text-lg text-zinc-600 dark:text-zinc-400">
               Status
             </Text>
-            <Text className="font-bold text-black dark:text-white">
-              {attributes.status}
+            <Text className="text-xs font-bold text-black dark:text-white">
+              🕒 {attributes.status}
             </Text>
           </View>
           <View className="mb-2">
             <Text className="font-bold text-lg text-zinc-600 dark:text-zinc-400">
               Author
             </Text>
-            <Text className="font-bold text-black dark:text-white">
-              {author}
+            <Text className="text-xs font-bold text-black dark:text-white">
+              👤 {author}
             </Text>
           </View>
           {attributes.year && (
@@ -43,8 +43,8 @@ const DetailsHeader = ({title, cover, attributes, author}) => {
               <Text className="font-bold text-lg text-zinc-600 dark:text-zinc-400">
                 Release Date
               </Text>
-              <Text className="font-bold text-black dark:text-white">
-                {attributes.year}
+              <Text className="text-xs font-bold text-black dark:text-white">
+                🗓 {attributes.year}
               </Text>
             </View>
           )}
