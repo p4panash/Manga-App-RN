@@ -26,7 +26,7 @@ const DescriptionCard = ({description}) => {
         ) : null}
       </View>
       <TouchableOpacity
-        className="mt-2 p-5 rounded-lg bg-slate-200 dark:bg-slate-800"
+        className="mt-2 p-3 rounded-lg bg-slate-200 dark:bg-slate-800"
         onPress={() => description.length > 200 && setToggled(!toggled)}>
         <Markdown
           markdownStyles={{
