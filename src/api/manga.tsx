@@ -22,6 +22,10 @@ const parseMangaData = (mangaData: any) => {
 };
 
 const parseChapterData = (chapterData: any) => {
+  if (chapterData.attributes.pages === 0) {
+    return null;
+  }
+
   return {
     id: chapterData.id,
     chapter: chapterData.attributes.chapter,
@@ -37,6 +41,7 @@ export const getMangaList = async (offset: Number = 0, query: any = null) => {
     'order[latestUploadedChapter]': 'desc',
     includes: ['cover_art', 'author'],
     'availableTranslatedLanguage[]': 'en',
+    hasAvailableChapters: true,
   };
   if (query) params['title'] = query;
 
@@ -73,7 +78,7 @@ export const getChapterList = async (
       return parseChapterData(value);
     });
 
-    return newResult;
+    return newResult.filter(value => value);
   });
 };
 
@@ -83,8 +88,8 @@ export const getChapterPages = async (chapterID: any) => {
   }).then(result => {
     const baseURL = result.baseUrl;
     const hash = result.chapter.hash;
-    const newResult = result.chapter.data.map(value => {
-      return `${baseURL}/data/${hash}/${value}`;
+    const newResult = result.chapter.dataSaver.map(value => {
+      return `${baseURL}/data-saver/${hash}/${value}`;
     });
 
     return newResult;

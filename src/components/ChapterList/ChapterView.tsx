@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Dimensions, ScrollView, StyleSheet} from 'react-native';
+import {Dimensions, ScrollView} from 'react-native';
 import {getChapterPages} from '../../api/manga';
 
 import Image from 'react-native-scalable-image';
