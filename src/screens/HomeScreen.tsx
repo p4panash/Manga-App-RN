@@ -6,7 +6,6 @@ import MangaList from '../components/manga/MangaList';
 const HomeScreen = ({navigation}) => {
   return (
     <Wrapper otherClass={'items-center'}>
-      <View className="pt-2" />
       <MangaList />
     </Wrapper>
   );

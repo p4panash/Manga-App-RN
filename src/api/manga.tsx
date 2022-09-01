@@ -30,16 +30,19 @@ const parseChapterData = (chapterData: any) => {
   };
 };
 
-export const getMangaList = async (offset: Number = 0) => {
+export const getMangaList = async (offset: Number = 0, query: any = null) => {
+  const params = {
+    contentRating: ['safe'],
+    offset: offset,
+    'order[latestUploadedChapter]': 'desc',
+    includes: ['cover_art', 'author'],
+    'availableTranslatedLanguage[]': 'en',
+  };
+  if (query) params['title'] = query;
+
   return request({
     url: 'manga',
-    params: {
-      contentRating: ['safe'],
-      offset: offset,
-      'order[latestUploadedChapter]': 'desc',
-      includes: ['cover_art', 'author'],
-      'availableTranslatedLanguage[]': 'en',
-    },
+    params: params,
     paramsSerialzer: params => {
       return qs.stringify(params);
     },

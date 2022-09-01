@@ -39,7 +39,7 @@ const MainNavigator = (): React.ReactElement => {
           <Stack.Screen
             name="Home"
             component={HomeScreen}
-            options={{title: 'Manga List'}}
+            options={{title: 'Manga List by MangaDex'}}
           />
           <Stack.Screen
             name="Details"
