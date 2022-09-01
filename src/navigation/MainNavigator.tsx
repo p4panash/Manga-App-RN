@@ -2,7 +2,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from '../screens/HomeScreen';
 import DetailsScreen from '../screens/DetailsScreen';
-import {useColorScheme} from 'react-native';
+import {Platform, Text, useColorScheme} from 'react-native';
 import {
   NavigationContainer,
   DefaultTheme,
@@ -16,8 +16,20 @@ const MainNavigator = (): React.ReactElement => {
   const Stack = createNativeStackNavigator();
 
   const displayTitle = params => {
-    const chapter = params.chapter ? `#${params.chapter} - ` : '';
-    return `${chapter}${params.title}`;
+    const chapter = params.chapter ? `#${params.chapter}` : '';
+    const chapterTitle = params.title;
+    const title = chapterTitle ? `${chapter} - ${chapterTitle}` : chapter;
+
+    return title;
+  };
+
+  const modalOptions = (route, navigation) => {
+    return Platform.OS === 'ios'
+      ? {
+          headerTitle: displayTitle(route.params),
+          headerLeft: () => <Text onPress={() => navigation.goBack()}>❌</Text>,
+        }
+      : {headerTitle: displayTitle(route.params)};
   };
 
   return (
@@ -42,9 +54,7 @@ const MainNavigator = (): React.ReactElement => {
           <Stack.Screen
             name="ChapterScreen"
             component={ChapterScreen}
-            options={({route}) => ({
-              title: displayTitle(route.params),
-            })}
+            options={({route, navigation}) => modalOptions(route, navigation)}
           />
         </Stack.Group>
       </Stack.Navigator>
