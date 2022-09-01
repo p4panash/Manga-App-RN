@@ -1,9 +1,20 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 
 const ChapterItem = (props: any) => {
+  const navigation = useNavigation();
+
   return (
-    <View className="my-2 p-3 rounded-lg bg-slate-200 dark:bg-slate-800 ">
+    <TouchableOpacity
+      className="my-2 p-3 rounded-lg bg-slate-200 dark:bg-slate-800"
+      onPress={() => {
+        navigation.navigate('ChapterScreen', {
+          title: props.title,
+          chapter: props.chapter,
+          id: props.id,
+        });
+      }}>
       <View className="flex-row justify-between items-center">
         <Text className="text-lg font-bold text-black dark:text-white">{`Chapter ${
           props.chapter || '0'
@@ -25,7 +36,7 @@ const ChapterItem = (props: any) => {
           </Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

@@ -73,3 +73,17 @@ export const getChapterList = async (
     return newResult;
   });
 };
+
+export const getChapterPages = async (chapterID: any) => {
+  return request({
+    url: `at-home/server/${chapterID}`,
+  }).then(result => {
+    const baseURL = result.baseUrl;
+    const hash = result.chapter.hash;
+    const newResult = result.chapter.data.map(value => {
+      return `${baseURL}/data/${hash}/${value}`;
+    });
+
+    return newResult;
+  });
+};
