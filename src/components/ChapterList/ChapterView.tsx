@@ -1,20 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, Image, ScrollView, StyleSheet} from 'react-native';
+import {Dimensions, ScrollView, StyleSheet} from 'react-native';
 import {getChapterPages} from '../../api/manga';
+
+import Image from 'react-native-scalable-image';
 
 const ChapterView = ({chapterID}) => {
   const [pages, setPages] = useState([]);
 
-  const styles = StyleSheet.create({
-    cover: {
-      flex: 1,
-      resizeMode: 'contain',
-      aspectRatio: 1,
-    },
-  });
-
   useEffect(() => {
     getChapterPages(chapterID).then(result => {
+      console.log(result);
       setPages(result);
     });
   }, [chapterID]);
@@ -22,7 +17,7 @@ const ChapterView = ({chapterID}) => {
   return (
     <ScrollView minimumZoomScale={1} maximumZoomScale={5}>
       {pages.map(value => (
-        <Image style={styles.cover} source={{uri: value}} />
+        <Image width={Dimensions.get('window').width} source={{uri: value}} />
       ))}
     </ScrollView>
   );
