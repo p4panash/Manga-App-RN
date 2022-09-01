@@ -43,13 +43,15 @@ export const getMangaList = async (offset: Number = 0, query: any = null) => {
     'availableTranslatedLanguage[]': 'en',
     hasAvailableChapters: true,
   };
-  if (query) params['title'] = query;
+  if (query) {
+    params.title = query;
+  }
 
   return request({
     url: 'manga',
     params: params,
-    paramsSerialzer: params => {
-      return qs.stringify(params);
+    paramsSerialzer: data => {
+      return qs.stringify(data);
     },
   }).then(result => {
     const newResult = result.data.map((value: any) => {

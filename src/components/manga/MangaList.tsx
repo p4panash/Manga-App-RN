@@ -1,12 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import {getMangaList} from '../../api/manga';
-import {FlatList} from 'react-native';
+import {FlatList, StyleSheet} from 'react-native';
 import MangaCard from './MangaCard';
 import SearchBar from '../utils/SearchBar';
 
 const MangaList = () => {
   const [list, setList] = useState([]);
   const [query, setQuery] = useState(null);
+
+  const styles = StyleSheet.create({
+    contentContainer: {
+      minWidth: '100%',
+    },
+  });
 
   useEffect(() => {
     getMangaList().then(result => {
@@ -36,7 +42,7 @@ const MangaList = () => {
       keyExtractor={item => item.id}
       onEndReached={() => fetchNew()}
       ListHeaderComponent={search}
-      contentContainerStyle={{minWidth: '100%'}}
+      contentContainerStyle={styles.contentContainer}
     />
   );
 };

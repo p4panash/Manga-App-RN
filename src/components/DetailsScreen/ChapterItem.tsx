@@ -1,9 +1,15 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 const ChapterItem = (props: any) => {
   const navigation = useNavigation();
+
+  const styles = StyleSheet.create({
+    title: {
+      width: 150,
+    },
+  });
 
   return (
     <TouchableOpacity
@@ -20,7 +26,7 @@ const ChapterItem = (props: any) => {
           props.chapter || '0'
         }`}</Text>
         <Text
-          style={{width: 150}}
+          style={styles.title}
           numberOfLines={1}
           ellipsizeMode="tail"
           className="text-black dark:text-white text-right">

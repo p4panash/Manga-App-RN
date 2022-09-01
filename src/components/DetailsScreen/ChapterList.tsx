@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, Text, View} from 'react-native';
+import {FlatList} from 'react-native';
 import {getChapterList} from '../../api/manga';
 import ChapterItem from './ChapterItem';
 
