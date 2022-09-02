@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import {View, TextInput} from 'react-native';
+import {SearchBarProps} from '../../types';
 
-const SearchBar = ({setQuery}) => {
+const SearchBar = ({setQuery}: SearchBarProps) => {
   const [value, setValue] = useState('');
 
   return (

@@ -4,12 +4,15 @@ import {getChapterPages} from '../../api/manga';
 
 import Image from 'react-native-scalable-image';
 
-const ChapterView = ({chapterID}) => {
+type Props = {
+  chapterID: String;
+};
+
+const ChapterView = ({chapterID}: Props) => {
   const [pages, setPages] = useState([]);
 
   useEffect(() => {
     getChapterPages(chapterID).then(result => {
-      console.log(result);
       setPages(result);
     });
   }, [chapterID]);

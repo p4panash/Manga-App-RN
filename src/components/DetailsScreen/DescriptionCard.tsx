@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import {Text, useColorScheme, View, TouchableOpacity} from 'react-native';
 import Markdown from 'react-native-easy-markdown';
+import {DescriptionCardProps} from '../../types';
 
-const DescriptionCard = ({description}) => {
+const DescriptionCard = ({description}: DescriptionCardProps) => {
   const scheme = useColorScheme();
   const [toggled, setToggled] = useState(false);
 

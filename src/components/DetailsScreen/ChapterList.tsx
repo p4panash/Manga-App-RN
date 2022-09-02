@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {FlatList} from 'react-native';
 import {getChapterList} from '../../api/manga';
+import {ChapterListProps} from '../../types';
 import ChapterItem from './ChapterItem';
 
-const ChapterList = ({mangaID, header}) => {
-  const [list, setList] = useState([]);
+const ChapterList = ({mangaID, header}: ChapterListProps) => {
+  const [list, setList] = useState<Array<any>>([]);
 
   useEffect(() => {
     getChapterList(mangaID).then(result => {
@@ -12,7 +13,7 @@ const ChapterList = ({mangaID, header}) => {
     });
   }, [mangaID]);
 
-  const renderItem = ({item}) => <ChapterItem {...item} />;
+  const renderItem = ({item}: any) => <ChapterItem {...item} />;
 
   const fetchNew = () => {
     const offset = list.length;
@@ -26,7 +27,7 @@ const ChapterList = ({mangaID, header}) => {
       <FlatList
         data={list}
         renderItem={renderItem}
-        keyExtractor={item => item.id}
+        keyExtractor={(item: any) => item.id}
         onEndReached={() => fetchNew()}
         ListHeaderComponent={header}
       />

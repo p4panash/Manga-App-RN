@@ -1,7 +1,13 @@
 import React from 'react';
 import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {DetailsHeaderProps} from '../../types';
 
-const DetailsHeader = ({title, cover, attributes, author}) => {
+const DetailsHeader = ({
+  title,
+  cover,
+  attributes,
+  author,
+}: DetailsHeaderProps) => {
   const styles = StyleSheet.create({
     cover: {
       width: 150,

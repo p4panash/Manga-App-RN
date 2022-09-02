@@ -9,13 +9,14 @@ import {
   DarkTheme,
 } from '@react-navigation/native';
 import ChapterScreen from '../screens/ChapterScreen';
+import {StackNavigator} from '../types';
 
 const MainNavigator = (): React.ReactElement => {
   const scheme = useColorScheme();
 
-  const Stack = createNativeStackNavigator();
+  const Stack = createNativeStackNavigator<StackNavigator>();
 
-  const displayTitle = params => {
+  const displayTitle = (params: any) => {
     const chapter = params.chapter ? `#${params.chapter}` : '';
     const chapterTitle = params.title;
     const title = chapterTitle ? `${chapter} - ${chapterTitle}` : chapter;
@@ -23,7 +24,7 @@ const MainNavigator = (): React.ReactElement => {
     return title;
   };
 
-  const modalOptions = (route, navigation) => {
+  const modalOptions = (route: any, navigation: any) => {
     return Platform.OS === 'ios'
       ? {
           headerTitle: displayTitle(route.params),
@@ -44,8 +45,9 @@ const MainNavigator = (): React.ReactElement => {
           <Stack.Screen
             name="Details"
             component={DetailsScreen}
+            // @ts-ignore
             options={({route}) => ({
-              title: route.params.title,
+              title: route.params?.title,
               headerBackTitle: 'Back',
             })}
           />

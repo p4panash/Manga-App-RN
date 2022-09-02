@@ -5,7 +5,7 @@ import MangaCard from './MangaCard';
 import SearchBar from '../utils/SearchBar';
 
 const MangaList = () => {
-  const [list, setList] = useState([]);
+  const [list, setList] = useState<Array<any>>([]);
   const [query, setQuery] = useState(null);
 
   const styles = StyleSheet.create({
@@ -26,7 +26,7 @@ const MangaList = () => {
     });
   }, [query]);
 
-  const renderItem = ({item}) => <MangaCard {...item} />;
+  const renderItem = ({item}: any) => <MangaCard {...item} />;
   const fetchNew = () => {
     const offset = list.length;
     getMangaList(offset, query).then(result => setList([...list, ...result]));

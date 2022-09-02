@@ -1,4 +1,5 @@
 import request from '../utils/request';
+import {MangaListParams} from '../types';
 
 const qs = require('qs');
 
@@ -35,7 +36,7 @@ const parseChapterData = (chapterData: any) => {
 };
 
 export const getMangaList = async (offset: Number = 0, query: any = null) => {
-  const params = {
+  const params: MangaListParams = {
     contentRating: ['safe'],
     offset: offset,
     'order[latestUploadedChapter]': 'desc',
@@ -50,7 +51,7 @@ export const getMangaList = async (offset: Number = 0, query: any = null) => {
   return request({
     url: 'manga',
     params: params,
-    paramsSerialzer: data => {
+    paramsSerialzer: (data: MangaListParams) => {
       return qs.stringify(data);
     },
   }).then(result => {
@@ -80,7 +81,7 @@ export const getChapterList = async (
       return parseChapterData(value);
     });
 
-    return newResult.filter(value => value);
+    return newResult.filter((value: Array<String>) => value);
   });
 };
 
@@ -90,7 +91,7 @@ export const getChapterPages = async (chapterID: any) => {
   }).then(result => {
     const baseURL = result.baseUrl;
     const hash = result.chapter.hash;
-    const newResult = result.chapter.dataSaver.map(value => {
+    const newResult = result.chapter.dataSaver.map((value: Object) => {
       return `${baseURL}/data-saver/${hash}/${value}`;
     });
 

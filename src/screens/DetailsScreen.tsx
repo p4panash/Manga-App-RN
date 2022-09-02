@@ -4,8 +4,9 @@ import ChapterList from '../components/DetailsScreen/ChapterList';
 import DescriptionCard from '../components/DetailsScreen/DescriptionCard';
 import DetailsHeader from '../components/DetailsScreen/DetailsHeader';
 import Wrapper from '../components/utils/Wrapper';
+import {DetailsScreenProps} from '../types';
 
-const DetailsScreen = ({route}) => {
+const DetailsScreen = ({route}: DetailsScreenProps) => {
   const {id, title, cover, attributes, author} = route.params;
   const detailsProps = {
     title: title,

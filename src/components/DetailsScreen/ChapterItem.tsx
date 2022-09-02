@@ -15,6 +15,7 @@ const ChapterItem = (props: any) => {
     <TouchableOpacity
       className="my-2 p-3 rounded-lg bg-slate-200 dark:bg-slate-800"
       onPress={() => {
+        // @ts-ignore
         navigation.navigate('ChapterScreen', {
           title: props.title,
           chapter: props.chapter,

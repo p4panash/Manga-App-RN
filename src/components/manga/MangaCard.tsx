@@ -1,8 +1,9 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import {MangaCardProps} from '../../types';
 
-const MangaCard = ({id, attributes, cover, author}) => {
+const MangaCard = ({id, attributes, cover, author}: MangaCardProps) => {
   const [loadingCycle, setLoadingCycle] = useState(0);
   const navigation = useNavigation();
 
@@ -20,6 +21,7 @@ const MangaCard = ({id, attributes, cover, author}) => {
       <TouchableOpacity
         className="flex-1 m-1 rounded-lg bg-slate-200 dark:bg-slate-800"
         onPress={() =>
+          // @ts-ignore
           navigation.navigate('Details', {
             id: id,
             title: attributes.title.en,
