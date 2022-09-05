@@ -19,8 +19,12 @@ const ChapterView = ({chapterID}: Props) => {
 
   return (
     <ScrollView minimumZoomScale={1} maximumZoomScale={5}>
-      {pages.map(value => (
-        <Image width={Dimensions.get('window').width} source={{uri: value}} />
+      {pages.map((value, index) => (
+        <Image
+          key={index}
+          width={Dimensions.get('window').width}
+          source={{uri: value}}
+        />
       ))}
     </ScrollView>
   );
