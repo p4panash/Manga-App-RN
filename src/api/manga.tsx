@@ -4,7 +4,6 @@ import {MangaListParams} from '../types';
 const qs = require('qs');
 
 const parseMangaData = (mangaData: any) => {
-  console.log(mangaData.relationships);
   const fileName = mangaData.relationships.find(
     (data: any) => data.type === 'cover_art',
   ).attributes.fileName;
