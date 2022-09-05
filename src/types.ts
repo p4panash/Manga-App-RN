@@ -4,6 +4,7 @@ import {ReactElement} from 'react';
 export type MangaListParams = {
   contentRating: Array<String>;
   offset: Number;
+  limit: Number;
   'order[latestUploadedChapter]': String;
   includes: Array<String>;
   'availableTranslatedLanguage[]': String;

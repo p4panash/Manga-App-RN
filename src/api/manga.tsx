@@ -39,6 +39,7 @@ export const getMangaList = async (offset: Number = 0, query: any = null) => {
   const params: MangaListParams = {
     contentRating: ['safe'],
     offset: offset,
+    limit: 6,
     'order[latestUploadedChapter]': 'desc',
     includes: ['cover_art', 'author'],
     'availableTranslatedLanguage[]': 'en',
